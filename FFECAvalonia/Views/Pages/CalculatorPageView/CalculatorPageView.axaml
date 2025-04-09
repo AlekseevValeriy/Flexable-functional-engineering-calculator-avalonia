@@ -1,0 +1,220 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:FFECAvalonia.ViewModels"
+             xmlns:cc="using:FFECAvalonia.CustomControls"
+             xmlns:converters="clr-namespace:FFECAvalonia.Converters"
+             x:Class="FFECAvalonia.Views.CalculatorPageView"
+             x:DataType="vm:CalculatorPageViewModel">
+<!-- если AVLN2100 то копирую это ( /\ ) в файл с ошибкой -->
+
+    <UserControl.Styles>
+      <Style Selector="UniformGrid">
+        <Setter Property="Background" Value="#1e1e1e"/>
+      </Style>
+      <Style Selector="Button">
+          <Setter Property="Background" Value="#4a4a4a"/>
+          <Setter Property="FontSize" Value="25"/>
+          <Setter Property="Margin" Value="8"/>
+      </Style>
+      <Style Selector="ToggleButton">
+          <Setter Property="Background" Value="#4a4a4a"/>
+          <Setter Property="CornerRadius" Value="5 5 5 5"/>
+          <Setter Property="Margin" Value="8"/>
+      </Style>
+      <Style Selector="TextBox">
+          <Setter Property="Background" Value="#4a4a4a"/>
+          <Setter Property="IsReadOnly"  Value="True"/>
+          <Setter Property="FontSize" Value="25"/>
+          <Setter Property="Foreground" Value="White"/>
+          <Setter Property="Margin" Value="8"/>
+          <Setter Property="TextWrapping" Value="Wrap"/>
+      </Style>
+      <Style Selector="GridSplitter">
+          <Setter Property="Background" Value="#0d0d0d"/>
+      </Style>
+      <Style Selector="TabItem">
+        <Setter Property="Background" Value="#0d0d0d"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Margin" Value="0 0 0 0"/>
+        <Setter Property="Padding" Value="10 0"/>
+        <Setter Property="BorderThickness" Value="0 0 0 0"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+      </Style>
+    </UserControl.Styles>
+
+    <DockPanel>
+      <!-- ToolPanel -->
+      <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Background="#0d0d0d">
+        <ToggleButton Content="Controls" IsChecked="False" IsEnabled="{Binding LayoutsIsChecked}" Command="{Binding TogglePanelFC}"/>
+      </StackPanel>
+
+          <Grid RowDefinitions="*,Auto,Auto" ColumnDefinitions="*">
+
+            <!-- Calculator start -->
+            <!-- ControlsPanel -->
+            <Grid ColumnDefinitions="*" RowDefinitions="Auto,Auto,*">
+              <!-- Display -->
+
+              <ItemsControl Grid.Row="0" ItemsSource="{Binding DisplayMatrixItems}">
+
+                <ItemsControl.ItemsPanel>
+                  <ItemsPanelTemplate>
+                      <UniformGrid Columns="1"/>
+                  </ItemsPanelTemplate>
+              </ItemsControl.ItemsPanel>
+
+              </ItemsControl>
+
+              <!-- Splitter -->
+              <GridSplitter Grid.Row="1"/>
+
+              <!-- Controls -->
+
+              <ItemsControl Grid.Row="2" ItemsSource="{Binding ButtonMatrixItems}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Columns="{Binding ButtonMatrixWidth}"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+
+              </ItemsControl>
+            </Grid>
+
+            <!-- Calculator end -->
+
+            <!-- Панель FC-->
+
+            <Border Grid.Row="1" 
+                    Grid.Column="0"
+                    Background="#1e1e1e" 
+                    Height="{Binding PanelFCHeight}">
+                <Border.Transitions>
+                    <Transitions>
+                        <DoubleTransition Property="Height" Duration="0:0:0.3" Easing="QuadraticEaseOut"/>
+                    </Transitions>
+                </Border.Transitions>
+
+                <TabControl Theme="{StaticResource TabControl}" TabStripPlacement="Bottom" Background="#0d0d0d" Focusable="True">
+
+                  
+                  <!-- <TabItem Header="Display">
+                    <ScrollViewer>
+                      <ItemsControl ItemsSource="{Binding DisplayTabMatrixItems}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <UniformGrid Columns="{Binding CatalogGridWidth}"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                      </ItemsControl>
+                    </ScrollViewer>
+                  </TabItem> -->
+
+                  <TabItem Header="Numbers">
+                    <ScrollViewer>
+                      <ItemsControl ItemsSource="{Binding NumbersTabMatrixItems}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <UniformGrid Columns="{Binding CatalogGridWidth}"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                      </ItemsControl>
+                    </ScrollViewer>
+                  </TabItem>
+
+                  <TabItem Header="Actions">
+                    <ScrollViewer>
+                      <ItemsControl ItemsSource="{Binding ActionsTabMatrixItems}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <UniformGrid Columns="{Binding CatalogGridWidth}"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                      </ItemsControl>
+                    </ScrollViewer>
+                  </TabItem>
+
+                  <TabItem Header="Operators">
+                    <ScrollViewer>
+                      <ItemsControl ItemsSource="{Binding OperatorsTabMatrixItems}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <UniformGrid Columns="{Binding CatalogGridWidth}"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                      </ItemsControl>
+                    </ScrollViewer>
+                  </TabItem>
+
+                  <TabItem Header="Function">
+                    <ScrollViewer>
+                      <ItemsControl ItemsSource="{Binding FunctionTabMatrixItems}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <UniformGrid Columns="{Binding CatalogGridWidth}" />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                      </ItemsControl>
+                    </ScrollViewer>
+                  </TabItem>
+
+                  <TabItem Header="Trigonometry">
+                    <ScrollViewer>
+                      <ItemsControl ItemsSource="{Binding TrigonometryTabMatrixItems}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <UniformGrid Columns="{Binding CatalogGridWidth}"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                      </ItemsControl>
+                    </ScrollViewer>
+                  </TabItem>
+
+                  <TabItem Header="Memory">
+                    <ScrollViewer>
+                      <ItemsControl ItemsSource="{Binding MemoryTabMatrixItems}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <UniformGrid Columns="{Binding CatalogGridWidth}"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                      </ItemsControl>
+                    </ScrollViewer>
+                  </TabItem>
+
+                  <!-- <TabItem Header="CustomFunction">
+                    <ScrollViewer>
+                      <ItemsControl ItemsSource="{Binding CustomFunctionTabMatrixItems}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <UniformGrid Columns="{Binding CatalogGridWidth}"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                      </ItemsControl>
+                    </ScrollViewer>
+                  </TabItem> -->
+
+                  <!-- <TabItem Header="Variable">
+                    <ScrollViewer>
+                      <ItemsControl ItemsSource="{Binding VariableTabMatrixItems}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <UniformGrid Columns="{Binding CatalogGridWidth}"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                      </ItemsControl>
+                    </ScrollViewer>
+                  </TabItem> -->
+
+                </TabControl>
+
+            </Border>
+          </Grid>
+
+    </DockPanel>
+
+</UserControl>

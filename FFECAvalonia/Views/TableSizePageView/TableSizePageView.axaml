@@ -1,0 +1,29 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:FFECAvalonia.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="FFECAvalonia.Views.TableSizePageView"
+             x:DataType="vm:TableSizePageViewModel">
+
+  <ScrollViewer Background="#1e1e1e">
+    <StackPanel Orientation="Vertical" Spacing="15">
+      <Border Background="#3e3e3e" CornerRadius="8 8 8 8" Padding="5" Margin="15">
+        <Grid RowDefinitions="*" ColumnDefinitions="*,50,50">
+          <TextBlock Grid.Column="0" Grid.Row="0" Text="Buttons grid width" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+          <Button Grid.Column="1" Grid.Row="0" Command="{Binding ButtonMatrixWidthUp}">+</Button>
+          <Button Grid.Column="3" Grid.Row="0" Command="{Binding ButtonMatrixWidthDown}">-</Button>
+        </Grid>
+      </Border>
+      <Border Background="#3e3e3e" CornerRadius="8 8 8 8" Padding="5" Margin="15">
+        <Grid RowDefinitions="*" ColumnDefinitions="*,50,50">
+          <TextBlock Grid.Column="0" Grid.Row="0" Text="Buttons grid height" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+          <Button Grid.Column="1" Grid.Row="0" Command="{Binding ButtonMatrixHeightUp}">+</Button>
+          <Button Grid.Column="3" Grid.Row="0" Command="{Binding ButtonMatrixHeightDown}">-</Button>
+        </Grid>
+      </Border>
+    </StackPanel>
+  </ScrollViewer>
+
+</UserControl>

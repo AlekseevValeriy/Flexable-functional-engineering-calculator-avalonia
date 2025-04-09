@@ -1,0 +1,35 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="FFECAvalonia.Views.AboutPageView">
+  <ScrollViewer Background="#1e1e1e">
+    <StackPanel Orientation="Vertical" Spacing="10">
+      <Border Background="#3e3e3e" CornerRadius="8 8 8 8" Padding="5" Margin="15" >
+          <Grid ColumnDefinitions="200,*" RowDefinitions="100">
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="Название программы:" TextWrapping="Wrap"/>
+            <TextBlock Grid.Row="0" Grid.Column="1" Text="Functional Flexible Engineering Calculator (FFEC)" TextWrapping="Wrap"/>
+          </Grid>
+      </Border>
+      <Border Background="#3e3e3e" CornerRadius="8 8 8 8" Padding="5" Margin="15" >
+        <Grid ColumnDefinitions="200,*" RowDefinitions="100">
+          <TextBlock Grid.Row="0" Grid.Column="0" Text="Участники команды:" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="0" Grid.Column="1" Text="Алексеев Валерий, Ягупова Анастасия, Африкян Армине, Согуренко Кирилл" TextWrapping="Wrap"/>
+        </Grid>
+      </Border>
+      <Border Background="#3e3e3e" CornerRadius="8 8 8 8" Padding="5" Margin="15">
+        <Grid ColumnDefinitions="200,*" RowDefinitions="100">
+          <TextBlock Grid.Row="0" Grid.Column="0" Text="Учебное заведение:" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="0" Grid.Column="1" Text='ГАПОУ "ВСПК"' TextWrapping="Wrap"/>
+        </Grid>
+      </Border>
+      <Border Background="#3e3e3e" CornerRadius="8 8 8 8" Padding="5" Margin="15">
+        <Grid ColumnDefinitions="200,*" RowDefinitions="100">
+          <TextBlock Grid.Row="0" Grid.Column="0" Text="Руководитель:" TextWrapping="Wrap"/>
+          <TextBlock Grid.Row="0" Grid.Column="1" Text="Галкина Валерия Вячеславовна" TextWrapping="Wrap"/>
+        </Grid>
+      </Border>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

@@ -1,0 +1,25 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="FFECAvalonia.Views.VariablesPageView"
+             xmlns:vm="clr-namespace:FFECAvalonia.ViewModels"
+             x:DataType="vm:VariablesPageViewModel">
+    <Grid RowDefinitions="*,Auto" ColumnDefinitions="*">
+      <ListBox Grid.Row="0" ItemsSource="{Binding VariableItems}" SelectedItem="{Binding SelectedItem}">
+        <ListBox.ItemTemplate>
+          <DataTemplate DataType="{x:Type vm:VariableItemTemplate}">
+              <Grid RowDefinitions="*" ColumnDefinitions="*,Auto">
+                <TextBlock Grid.Column="0" Text="{Binding Name}" />
+                <TextBox Grid.Column="1" Text="{Binding Value}" TextChanged="TextBoxChanged"/>
+              </Grid>
+            </DataTemplate>
+          </ListBox.ItemTemplate>
+      </ListBox>
+      <Grid Grid.Row="1" RowDefinitions="*,*" ColumnDefinitions="*,*" DockPanel.Dock="Bottom">
+          <Button Content="Add" Grid.Column="0" Grid.Row="0" Command="{Binding Add}"></Button>
+          <Button Content="Delete" Grid.Column="1" Grid.Row="0" Command="{Binding Delete}"></Button>
+      </Grid>
+    </Grid>
+</UserControl>

@@ -1,0 +1,28 @@
+{
+  "Configuration": "Base2",
+  "DefaultConfiguration": {
+    "Variables": {},
+    "CustomFunctions": {},
+    "TableStructs": {
+      "Display": [
+        1,
+        1
+      ],
+      "Controls": [
+        1,
+        1
+      ]
+    },
+    "ControlsLayout": [
+      {
+        "Sector": "Display",
+        "Name": "Base",
+        "StorageType": "ButtonControls",
+        "Position": [
+          0,
+          0
+        ]
+      }
+    ]
+  }
+}

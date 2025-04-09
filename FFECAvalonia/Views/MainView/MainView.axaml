@@ -1,0 +1,44 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:FFECAvalonia.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="FFECAvalonia.Views.MainView"
+             x:DataType="vm:MainViewModel">
+  <Design.DataContext>
+    <vm:MainViewModel />
+  </Design.DataContext>
+
+	<SplitView IsPaneOpen="{Binding IsPaneOpen}"
+			   OpenPaneLength="180"
+			   CompactPaneLength="55"
+			   DisplayMode="CompactInline"
+			   PaneBackground="#0d0d0d"
+			   Background="#0d0d0d"
+			   PanePlacement="Left">
+		<SplitView.Pane>
+			<StackPanel Spacing="5" Margin="5">
+				<Button Command="{Binding TriggerPaneCommand}" HorizontalAlignment="Left" BorderThickness="0" Margin="4">
+					<PathIcon Foreground="White"  Data="{StaticResource line_horizontal_3_regular}"></PathIcon>
+				</Button>
+				<ListBox ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedListItem}" Background="#0d0d0d" Foreground="White" BorderThickness="0">
+					<ListBox.ItemTemplate>
+						<DataTemplate DataType="{x:Type vm:ListItemTemplate}">
+							<StackPanel Spacing="17" Orientation="Horizontal">
+								<PathIcon Foreground="White" Data="{Binding ListItemIcon}"></PathIcon>
+								<TextBlock Text="{Binding Label}" />
+							</StackPanel>
+						</DataTemplate>
+					</ListBox.ItemTemplate>
+				</ListBox>
+			</StackPanel>
+		</SplitView.Pane>
+		
+		<SplitView.Content>
+			<TransitioningContentControl Content="{Binding CurrentPage}" />
+		</SplitView.Content>
+		
+	</SplitView>
+
+</UserControl>
